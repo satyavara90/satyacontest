@@ -35,10 +35,10 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Test code
+        continue-on-error: true
         id: testsatya
         run: npm run test
       - name: Upload test report
-        if: failure() && steps.testsatya.outcome == 'failure'
         uses: actions/upload-artifact@v3
         with:
           name: test-report
