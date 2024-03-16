@@ -20,6 +20,7 @@ jobs:
       - name: Lint code
         run: npm run lint
   test:
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Get code
@@ -36,7 +37,7 @@ jobs:
         id: testsatya
         run: npm run test
       - name: Upload test report
-        if: steps.testsatya.outcome == 'failure'
+        if: failure() && steps.testsatya.outcome == 'failure'
         uses: actions/upload-artifact@v3
         with:
           name: test-report
