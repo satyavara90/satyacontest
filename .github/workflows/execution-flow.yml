@@ -83,4 +83,4 @@ jobs:
       - name: echo output
         run: |
          echo "Deployment completed"
-         echo ${{toJson(github)}}
+         echo "${{toJson(github)}}"
